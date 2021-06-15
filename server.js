@@ -1,11 +1,11 @@
 'use strict';
 
 require('dotenv').config();
+const server = express();
 const express = require('express');
 const cors = require('cors');
 const weatherData = require('./data/weather.json');
 
-const server = express();
 server.use(cors());
 
 class Forecast {
@@ -34,7 +34,6 @@ server.get('/weather', (request, resopnse) => {
     // let weatherLat = req.quiry.lat;
     // let weatherLon = req.quiry.lon;
     // let searchQuery = req.quiry.city_name;
-
     // let cityItem = weatherData.find (item => {
     //     if (item.city_name == searchQuery)
     //     return 'error'
