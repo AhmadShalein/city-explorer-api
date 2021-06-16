@@ -38,9 +38,9 @@ server.get('/', (request, response) => {
 })
 
 // http://localhost:3010/test
-server.get('/test', (request, response) => {
-    let test = 'hello from back end';
-    response.status(200).send(test);
+server.get('/test', (req, res) => {
+    let test = 'hello to the Back End';
+    res.status(200).send(test);
 })
 
 // http://localhost:3010/weather
@@ -91,6 +91,7 @@ server.get('/movies', (request,resopnse) => {
 
 server.get('*', (request, resopnse) => {
     resopnse.status(404).send('page not found');
+
 })
 
 server.listen(PORT, () => {
