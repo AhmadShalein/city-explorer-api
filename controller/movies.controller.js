@@ -12,17 +12,17 @@ server.use(cors());
 
 const moviesHandle = (request, response) => {
     let cityName = request.query.city;
-    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityName}`).then(response => {
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityName}`).then(res => {
         const arrOfMovies = [];
-        response.data.results.map(item => {
+        res.data.results.map(item => {
           let imageURL = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
-          let movieObject = new Movie(item.title, item.overview, item.vote_average, item.vote_count, imageURL, item.popularity, item.release_date);
+          let movieObject = new Movies(item.title, item.overview, item.vote_average, item.vote_count, imageURL, item.popularity, item.release_date);
           arrOfMovies.push(movieObject);
         });
-        resopnse.send(arrOfMovies);
+        response.send(arrOfMovies);
     })
       .catch(error => {
-        resopnse.status(500).send(`Not found ${error}`);
+        response.status(500).send(`Not found ${error}`);
     });
 }
 
