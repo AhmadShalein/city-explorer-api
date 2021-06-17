@@ -10,7 +10,7 @@ const Weather = require('../models/weather.model');
 const server = express(); // initialize your express server instance
 server.use(cors());
 
-const weatherHandle = (request, response) => {
+const weatherHandle = (request, response) =>{
     let lat = request.query.lat;
     let lon = request.query.lon;
     // let searchQuery = req.quiry.city_name;
