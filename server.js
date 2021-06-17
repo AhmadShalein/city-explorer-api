@@ -6,17 +6,13 @@ const cors = require('cors'); // after you initialize your express server instan
 const axios = require('axios');
 const { response } = require('express');
 // const weatherData = require('./data/weather.json');
+const weatherHandle = require('./controller/weather.controller');
+const moviesHandle = require('./controller/movies.controller');
 
 const server = express(); // initialize your express server instance
 server.use(cors());
 
 const PORT = process.env.PORT || 3030;
-
-// Our Index Route
-server.get('/', indexController);
-
-// Our Test Route
-server.get('/test', testController);
 
 // Our Weather Route
 server.get('/weather', weatherHandle);
