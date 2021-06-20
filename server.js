@@ -14,6 +14,10 @@ server.use(cors());
 
 const PORT = process.env.PORT || 3030;
 
+server.get('/', (request,response => {
+    response.send('Hello from my home route!')
+}))
+
 // Our Weather Route
 server.get('/weather', weatherHandle);
 
