@@ -4,7 +4,6 @@ require('dotenv').config();
 const express = require('express'); // require the express package
 const cors = require('cors'); // after you initialize your express server instance
 const axios = require('axios');
-const { response } = require('express');
 const Weather = require('../models/weather.model');
 
 const server = express(); // initialize your express server instance
