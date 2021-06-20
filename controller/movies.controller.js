@@ -10,8 +10,18 @@ const Movies = require('../models/movies.model');
 const server = express(); // initialize your express server instance
 server.use(cors());
 
+let myMemory = {};
+
 const moviesHandle = (request, response) => {
     let cityName = request.query.city;
+
+    if (myMemory[cityName] !== undefined)
+    {
+      response.send(myMemory[cityName]);
+      console.log("get the data from memory!");
+    }
+    else
+    {
     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${cityName}`).then(res => {
         const arrOfMovies = [];
         res.data.results.map(item => {
@@ -20,10 +30,13 @@ const moviesHandle = (request, response) => {
           arrOfMovies.push(movieObject);
         });
         response.send(arrOfMovies);
+        myMemory[cityName] = arrOfMovies;
+        console.log("get the data from API");
     })
       .catch(error => {
         response.status(500).send(`Not found ${error}`);
     });
+  }
 }
 
 module.exports = moviesHandle;
